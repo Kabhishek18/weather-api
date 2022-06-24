@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Anamika Singh</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
-</head>
+<!-- templates/home.html-->
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
 
-<body>
+
+{% block content %}
+{% if user.is_authenticated %}
     <section class="hero is-primary">
         <div class="hero-body">
             <div class="container">
@@ -17,15 +13,6 @@
 
                     Weather Forcast
                 </h1>
-
-                    {% if user.is_authenticated %}
-                      <h2> Hi {{ user.username }}! </h2>
-                      <p><a href="{% url 'logout' %}">Log Out</a></p>
-                    {% else %}
-                      <p>You are not logged in</p>
-                      <a href="{% url 'login' %}">Log In</a>
-                    {% endif %}
-
             </div>
         </div>
     </section>
@@ -89,6 +76,26 @@
     </section>
     <footer class="footer">
     </footer>
-</body>
+ {% else %}
+                <div class="container">
+                    <div class="col-md-6">
+                        <div class="card" style="width: 18rem;">
+                          <div class="card-body">
+                            <h5 class="card-title">Login here</h5>
+                            <a href="{% url 'login' %}" class="card-linkx">Log In</a>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card" style="width: 18rem;">
+                          <div class="card-body">
+                            <h5 class="card-title">Register here</h5>
+                            <a class="card-link" href="{% url 'register' %}">Register Here</a>
+                          </div>
+                        </div>
+                    </div>
+                </div>
 
-</html>
+{% endif %}
+
+{% endblock %}

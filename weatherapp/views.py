@@ -2,8 +2,9 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 import requests
 from .models import City
-from .forms import CityForm
-from collections import OrderedDict
+from .forms import CityForm,RegisterForm
+
+
 
 # Create your views here.
 
@@ -34,4 +35,17 @@ def index(request):
 
 def delete_city(request, city_id):
 	City.objects.get(id=city_id).delete()
-	return redirect('home')
+	return redirect('weatherhome')
+
+
+def register(response):
+	if response.method == "POST":
+		form = RegisterForm(response.POST)
+		if form.is_valid():
+			form.save()
+
+		return redirect("login")
+	else:
+		form = RegisterForm()
+
+	return render(response, "registration/register.html", {"form": form})

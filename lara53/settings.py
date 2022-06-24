@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'weatherapp',
+    'weatherapp',    'crispy_forms',
+
 ]
 
 MIDDLEWARE = [
@@ -123,3 +124,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "home"  # new
+CRISPY_TEMPLATE_PACK="bootstrap4"
